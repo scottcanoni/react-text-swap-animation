@@ -1,0 +1,1 @@
+"# react-text-swap-animation" 
