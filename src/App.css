@@ -1,0 +1,12 @@
+body {
+    background-color: #1c3d65;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.text-swap .word {
+    white-space: pre;
+}

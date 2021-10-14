@@ -1,0 +1,39 @@
+.text-swap {
+    color: #fff;
+    flex: 0 0 auto;
+    align-self: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    text-align: left;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    position: relative;
+
+    .word {
+        position: relative;
+
+        &.hidden {
+            position: absolute;
+            visibility: hidden;
+            z-index: -9000;
+        }
+
+        .letter {
+            white-space: pre;
+            z-index: 10;
+            display: inline-block;
+        }
+    }
+
+    .word-animation {
+        .letter {
+            z-index: 10;
+            position: absolute;
+            /*transition: all, 2s, cubic-bezier(0.1, 0.7, 1.0, 0.1), 2s;*/
+            transition: all, 2s, ease-in-out, 2s;
+        }
+    }
+}
