@@ -1,6 +1,6 @@
 {
     "name": "react-text-swap-animation",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Scott Canoni",
     "description": "A React component to use CSS animations to swap letters in 2 words. The text is animated in position after calculating initial and final positions of each letter.  Words which are anagrams will animate well, but you can use any words or phrases.",
     "license": "WTFPL",
