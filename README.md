@@ -17,6 +17,12 @@ Install
 or
 `npm install react-text-swap-animation`
 
+Demo
+----
+
+[DEMO](https://xwdw2.csb.app/)
+
+[CodeSandbox](https://codesandbox.io/s/react-text-swap-animation-demo-xwdw2)
 
 Usage
 ----
