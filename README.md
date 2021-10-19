@@ -14,7 +14,9 @@ Install
 ----
 
 `yarn add react-text-swap-animation`
+
 or
+
 `npm install react-text-swap-animation`
 
 Demo
