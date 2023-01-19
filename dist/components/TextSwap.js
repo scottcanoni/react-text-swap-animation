@@ -1,26 +1,20 @@
 "use strict";
 
+require("core-js/modules/es.symbol.description.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = TextSwap;
-
 require("core-js/modules/web.dom-collections.iterator.js");
-
 var _react = _interopRequireWildcard(require("react"));
-
 var _utils = require("../utils");
-
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 /**
  * Render and animate from one word to another word and back again.
  *
@@ -59,28 +53,28 @@ function TextSwap(_ref) {
       // Find a matching destination character to execute the swap with
       let destLetterIndex = [...words[1]].findIndex((destLetter, srcIndex) => {
         return destLetter.toLowerCase() === letter.toLowerCase() && destLettersPairedByIndex[srcIndex] !== true;
-      }); // If no matching character
+      });
 
+      // If no matching character
       if (destLetterIndex === -1) {
         // Find a space to swap with
         destLetterIndex = [...words[1]].findIndex((destLetter, srcIndex) => {
           return destLetter === ' ' && destLettersPairedByIndex[srcIndex] !== true;
-        }); // If there was no space, find first non-used space
+        });
 
+        // If there was no space, find first non-used space
         if (destLetterIndex === -1) {
           destLetterIndex = [...words[1]].findIndex((destLetter, srcIndex) => {
             return destLettersPairedByIndex[srcIndex] !== true;
           });
         }
       }
-
       if (destLetterIndex === -1) {
         throw new Error("Not sure how to animate since all source letters were paired already, disappear maybe?");
       }
-
       destLettersPairedByIndex[destLetterIndex] = true; // mark this source paired/used
-      // If the text wraps then the offset left isn't correct.
 
+      // If the text wraps then the offset left isn't correct.
       const swap = {
         id: (0, _utils.uuidv4)(),
         // for a unique key
@@ -110,7 +104,6 @@ function TextSwap(_ref) {
       swaps.push(swap);
     });
     setAnimations(swaps);
-
     const animateFunc = () => {
       swaps.forEach((swap, i) => {
         // Animate each character towards the destination
@@ -120,53 +113,57 @@ function TextSwap(_ref) {
             playing: true,
             disappear: false
           });
-
           if (swap.src.letter !== ' ' && swap.dest.letter === ' ') {
             updateAnimation(i, {
               disappear: true
             });
           }
-        }, forwardStartTime); // Half way towards the destination, switch to the destination letter
+        }, forwardStartTime);
 
+        // Halfway towards the destination, switch to the destination letter
         setTimeout(() => {
-          if (swap.src.letter !== ' ' && swap.dest.letter === ' ') {// do nothing
+          if (swap.src.letter !== ' ' && swap.dest.letter === ' ') {
+            // do nothing
           } else {
             updateAnimation(i, {
               letter: swap.dest.letter
             });
           }
-        }, forwardStartTime + 500); // Animate each character back to their original location
+        }, forwardStartTime + 500);
 
+        // Animate each character back to their original location
         const reverseStartTime = (0, _utils.randomMinMax)(randomReverseMin, randomReverseMax);
         setTimeout(() => {
           updateAnimation(i, {
             playing: false,
             disappear: false
           });
-
           if (swap.dest.letter !== ' ' && swap.src.letter === ' ') {
             updateAnimation(i, {
               disappear: true
             });
           }
-        }, reverseStartTime); // Half way back to the initial location, switch to the initial letter
+        }, reverseStartTime);
 
+        // Half way back to the initial location, switch to the initial letter
         setTimeout(() => {
-          if (swap.dest.letter !== ' ' && swap.src.letter === ' ') {// do nothing
+          if (swap.dest.letter !== ' ' && swap.src.letter === ' ') {
+            // do nothing
           } else {
             updateAnimation(i, {
               letter: swap.src.letter
             });
           }
         }, reverseStartTime + 500);
-      }); // Repeat forever
+      });
 
+      // Repeat forever
       setTimeout(() => {
         animateFunc();
       }, loopAnimation);
-    }; // Start the process
+    };
 
-
+    // Start the process
     setTimeout(() => {
       animateFunc();
     }, waitToStart);
@@ -193,7 +190,7 @@ function TextSwap(_ref) {
     }, letter);
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "word word-animation"
-  }, swapAnimations.map((renderedLetter, i) => {
+  }, swapAnimations.map(renderedLetter => {
     const {
       id,
       letter,
@@ -202,8 +199,7 @@ function TextSwap(_ref) {
       src,
       dest
     } = renderedLetter;
-    let letterStyles = {};
-
+    let letterStyles;
     if (playing) {
       const left = "".concat(dest.rect.x, "px");
       letterStyles = {
@@ -215,11 +211,9 @@ function TextSwap(_ref) {
         left
       };
     }
-
     if (disappear) {
       letterStyles.opacity = 0;
     }
-
     return /*#__PURE__*/_react.default.createElement("span", {
       key: id,
       className: "letter",

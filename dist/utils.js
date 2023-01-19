@@ -5,13 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.randomMinMax = randomMinMax;
 exports.uuidv4 = uuidv4;
-
 require("core-js/modules/es.regexp.exec.js");
-
 require("core-js/modules/es.string.replace.js");
-
 require("core-js/modules/es.regexp.to-string.js");
-
 /**
  * Get a random number between `min` and `max`
  * @param {number} min The minimum number you want to include in the random output
@@ -23,11 +19,10 @@ function randomMinMax() {
   let max = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
   return Math.floor(Math.random() * (max - min)) + min;
 }
-
 function uuidv4() {
   return 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx'.replace(/[xy]/g, c => {
     const r = Math.random() * 16 | 0,
-          v = c === 'x' ? r : r & 0x3 | 0x8;
+      v = c === 'x' ? r : r & 0x3 | 0x8;
     return v.toString(16);
   });
 }
