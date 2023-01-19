@@ -20,7 +20,7 @@ import './index.css';
  * @param {FontToObserve} [fontToObserve] A description of an embedded font to observe and wait until loaded.
  * @returns {JSX.Element|null}
  */
-export default function Loader ({ words = DEFAULT_WORDS, animationOptions = {}, fontToObserve }) {
+export default function Loader({ words = DEFAULT_WORDS, animationOptions = {}, fontToObserve }) {
     const animOptions = {
         ...DEFAULT_ANIMATION_OPTIONS,
         ...animationOptions,

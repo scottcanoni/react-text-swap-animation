@@ -11,20 +11,20 @@ ReactDOM.render(
 
             <TextSwap fontToObserve={{ family: 'Open Sans' }} />
 
-            <br/>
-            <br/>
+            <br />
+            <br />
 
-            <TextSwap fontToObserve={{ family: 'Open Sans' }} words={["a witty saying", "proves nothing"]}  />
+            <TextSwap fontToObserve={{ family: 'Open Sans' }} words={['a witty saying', 'proves nothing']} />
 
-            <br/>
-            <br/>
+            <br />
+            <br />
 
-            <TextSwap fontToObserve={{ family: 'Open Sans' }} words={["don't be sad it's over", "be happy that it happened"]}  />
+            <TextSwap fontToObserve={{ family: 'Open Sans' }} words={['don\'t be sad it\'s over', 'be happy that it happened']} />
 
-            <br/>
-            <br/>
+            <br />
+            <br />
 
-            <TextSwap fontToObserve={{ family: 'Open Sans' }} words={["debit card", "bad credit"]} />
+            <TextSwap fontToObserve={{ family: 'Open Sans' }} words={['debit card', 'bad credit']} />
         </div>
     </React.StrictMode>,
     document.getElementById('root'),
