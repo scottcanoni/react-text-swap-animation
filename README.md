@@ -65,26 +65,26 @@ API
 
 ### Props
 
-| Prop               | Type   | Default                                          | Description                                             |
-| :----------------- | :----- |:-------------------------------------------------| :------------------------------------------------------ |
-| `words`            | array  | `['Text Swap Animation', 'Antitoxin Swamp Tea']` | An array containing exactly 2 words which are an anagram of each other. |
-| `animationOptions` | object | `AnimationOptions`                               | Timing options for when to start, how fast to animate forwards, backwards, and when to loop (optional). |
-| `fontToObserve`    | string |                                                          | The name of an embedded font to wait until loaded.  If not specified, animation will loaded immediately (optional). |
+| Prop               | Type   | Default                                          | Description                                                                                                             |
+| :----------------- | :----- |:-------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|
+| `words`            | array  | `['Text Swap Animation', 'Antitoxin Swamp Tea']` | An array containing exactly 2 words which are an anagram of each other.                                                 |
+| `animationOptions` | object | `AnimationOptions`                               | Timing options for when to start, how fast to animate forwards, backwards, and when to loop (optional).                 |
+| `fontToObserve`    | string |                                                  | The name of an embedded font to wait until loaded.  If not specified, animation will be loaded immediately (optional).  |
 
 #### AnimationOptions
 
 All time values are in # of milliseconds.  The randomness allows a nice jumble effect.  You can use any values you want to create some fascinating animations.
 
-| Property           | Type   | Default | Description                                                                                   |
-| :------------------- | :----- | :------------ |:--------------------------------------------------------------------------------------------------------------------------------------|
-| `randomStartMin`     | number | `0`           | The minimum amount of time to randomly wait before starting to animate each letter.                                                   |
-| `randomStartMax`     | number | `3000`        | The maximum amount of time to randomly wait before starting to animate each letter. Should be `>= randomStartMin`.                    |
-| `randomReverseMin`   | number | `6000`        | The minimum amount of time to randomly wait before starting to animate each letter in reverse.                                        |
-| `randomReverseMax`   | number | `9000`        | The maximum amount of time to randomly wait before starting to animate each letter in reverse. Should be `>= randomReverseMin`.       |
-| `loopAnimation`      | number | `12000`       | The amount of time to wait before starting the next full loop of the animation. Should be `>= randomReverseMax + transitionDuration`. |
-| `waitToStart`        | number | `0`           | The amount of time to wait before beginning the animation on start up the first time.                                                 |
-| `transitionDuration` | number | `1000`        | How long should it take for a letter to move to its next position. Should be `<= randomReverseMin - randomStartMax`.                  |
-| `timingFunction`     | string | `ease-in-out` | What [timing function](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function) should be used for the animation.  |
+| Property           | Type   | Default | Description                                                                                                                            |
+| :------------------- | :----- | :------------ |:---------------------------------------------------------------------------------------------------------------------------------------|
+| `randomStartMin`     | number | `0`           | The minimum amount of time to randomly wait before starting to animate each letter.                                                    |
+| `randomStartMax`     | number | `3000`        | The maximum amount of time to randomly wait before starting to animate each letter. Should be `>= randomStartMin`.                     |
+| `randomReverseMin`   | number | `6000`        | The minimum amount of time to randomly wait before starting to animate each letter in reverse.                                         |
+| `randomReverseMax`   | number | `9000`        | The maximum amount of time to randomly wait before starting to animate each letter in reverse. Should be `>= randomReverseMin`.        |
+| `loopAnimation`      | number | `12000`       | The amount of time to wait before starting the next full loop of the animation. Should be `>= randomReverseMax + transitionDuration`.  |
+| `waitToStart`        | number | `0`           | The amount of time to wait before beginning the animation on start up the first time.                                                  |
+| `transitionDuration` | number | `1000`        | How long should it take for a letter to move to its next position. Should be `<= randomReverseMin - randomStartMax`.                   |
+| `timingFunction`     | string | `ease-in-out` | What [timing function](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function) should be used for the animation.   |
 
 Run Locally
 ----
