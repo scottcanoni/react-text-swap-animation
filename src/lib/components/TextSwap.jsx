@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { createRef, useCallback, useEffect, useRef, useState } from 'react';
 import { randomMinMax, uuidv4 } from '../utils';
 
@@ -33,6 +34,8 @@ export default function TextSwap({ words, animationOptions }) {
         randomReverseMax,
         loopAnimation,
         waitToStart,
+        transitionDuration,
+        timingFunction,
     } = animationOptions;
 
     useEffect(() => {
@@ -148,14 +151,13 @@ export default function TextSwap({ words, animationOptions }) {
             animateFunc();
         }, waitToStart);
 
-    }, [lettersRefs1, lettersRefs2, loopAnimation, updateAnimation, randomReverseMax, randomReverseMin, randomStartMax, randomStartMin, waitToStart, words]);
+    }, [lettersRefs1, lettersRefs2, loopAnimation, updateAnimation, randomReverseMax, randomReverseMin, randomStartMax, randomStartMin, waitToStart, transitionDuration, timingFunction, words]);
 
     return (
         <div className="text-swap">
             <div className="word word-1 hidden">
                 {
                     [...words[0]].map((letter, i) => {
-                        // eslint-disable-next-line react/no-array-index-key
                         return <span ref={lettersRefs1.current[i]} className="letter" key={`${i}${letter}`}>{letter}</span>;
                     })
                 }
@@ -163,7 +165,6 @@ export default function TextSwap({ words, animationOptions }) {
             <div className="word word-2 hidden">
                 {
                     [...words[1]].map((letter, i) => {
-                        // eslint-disable-next-line react/no-array-index-key
                         return <span ref={lettersRefs2.current[i]} className="letter" key={`${i}${letter}`}>{letter}</span>;
                     })
                 }
@@ -173,14 +174,14 @@ export default function TextSwap({ words, animationOptions }) {
                     swapAnimations.map((renderedLetter) => {
                         const { id, letter, playing, disappear, src, dest } = renderedLetter;
 
-                        let letterStyles;
+                        let letterStyles = { transition: `left ${transitionDuration}ms ${timingFunction}, top ${transitionDuration}ms ${timingFunction}` };
                         if (playing) {
                             const left = `${dest.rect.x}px`;
-                            letterStyles = { left };
+                            letterStyles = { ...letterStyles, left };
                         }
                         else {
                             const left = `${src.rect.x}px`;
-                            letterStyles = { left };
+                            letterStyles = { ...letterStyles, left };
                         }
 
                         if (disappear) {

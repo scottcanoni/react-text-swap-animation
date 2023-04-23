@@ -44,7 +44,9 @@ function TextSwap(_ref) {
     randomReverseMin,
     randomReverseMax,
     loopAnimation,
-    waitToStart
+    waitToStart,
+    transitionDuration,
+    timingFunction
   } = animationOptions;
   (0, _react.useEffect)(() => {
     const swaps = [];
@@ -167,13 +169,12 @@ function TextSwap(_ref) {
     setTimeout(() => {
       animateFunc();
     }, waitToStart);
-  }, [lettersRefs1, lettersRefs2, loopAnimation, updateAnimation, randomReverseMax, randomReverseMin, randomStartMax, randomStartMin, waitToStart, words]);
+  }, [lettersRefs1, lettersRefs2, loopAnimation, updateAnimation, randomReverseMax, randomReverseMin, randomStartMax, randomStartMin, waitToStart, transitionDuration, timingFunction, words]);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "text-swap"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "word word-1 hidden"
   }, [...words[0]].map((letter, i) => {
-    // eslint-disable-next-line react/no-array-index-key
     return /*#__PURE__*/_react.default.createElement("span", {
       ref: lettersRefs1.current[i],
       className: "letter",
@@ -182,7 +183,6 @@ function TextSwap(_ref) {
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "word word-2 hidden"
   }, [...words[1]].map((letter, i) => {
-    // eslint-disable-next-line react/no-array-index-key
     return /*#__PURE__*/_react.default.createElement("span", {
       ref: lettersRefs2.current[i],
       className: "letter",
@@ -199,17 +199,19 @@ function TextSwap(_ref) {
       src,
       dest
     } = renderedLetter;
-    let letterStyles;
+    let letterStyles = {
+      transition: "left ".concat(transitionDuration, "ms ").concat(timingFunction, ", top ").concat(transitionDuration, "ms ").concat(timingFunction)
+    };
     if (playing) {
       const left = "".concat(dest.rect.x, "px");
-      letterStyles = {
+      letterStyles = _objectSpread(_objectSpread({}, letterStyles), {}, {
         left
-      };
+      });
     } else {
       const left = "".concat(src.rect.x, "px");
-      letterStyles = {
+      letterStyles = _objectSpread(_objectSpread({}, letterStyles), {}, {
         left
-      };
+      });
     }
     if (disappear) {
       letterStyles.opacity = 0;

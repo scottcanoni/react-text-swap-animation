@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Loader;
 require("core-js/modules/es.symbol.description.js");
 var _react = _interopRequireDefault(require("react"));
-var _useFontFaceObserver = _interopRequireDefault(require("use-font-face-observer"));
+var _useFonts = _interopRequireDefault(require("./useFonts"));
 var _TextSwap = _interopRequireDefault(require("./TextSwap"));
 var _constants = require("./constants");
 require("./index.css");
@@ -17,18 +17,10 @@ function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key i
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 /**
- * @typedef FontToObserve A description of an embedded font to observe and wait until loaded.
- * @property {string} [family] The font-family: Roboto, Inter, Open Sans, etc
- * @property {string|number} [weight] The font-weight: normal, bold, 800, etc
- * @property {string} [style] The font-style: normal, italic, oblique
- * @property {string} [stretch] The font stretch: normal, condensed, expanded, etc
- */
-
-/**
  * Render and animate from one word to another word and back again.
  * @param {[string]} [words] The 2 words to animate between.
  * @param {AnimationOptions} [animationOptions] Timing options for when to start, how fast to animate forwards, backwards, and when to loop.
- * @param {FontToObserve} [fontToObserve] A description of an embedded font to observe and wait until loaded.
+ * @param {string} [fontToObserve] A description of an embedded font to observe and wait until loaded.
  * @returns {JSX.Element|null}
  */
 function Loader(_ref) {
@@ -37,8 +29,8 @@ function Loader(_ref) {
     animationOptions = {},
     fontToObserve
   } = _ref;
+  const isFontLoaded = (0, _useFonts.default)(fontToObserve);
   const animOptions = _objectSpread(_objectSpread({}, _constants.DEFAULT_ANIMATION_OPTIONS), animationOptions);
-  const isFontLoaded = (0, _useFontFaceObserver.default)(fontToObserve ? [fontToObserve] : []);
   let word1 = words[0];
   let word2 = words[1];
   const maxLength = Math.max(word1.length, word2.length);
