@@ -1,21 +1,24 @@
 "use strict";
 
-require("core-js/modules/es.symbol.description.js");
+require("core-js/modules/es.iterator.filter.js");
+require("core-js/modules/es.iterator.for-each.js");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = TextSwap;
+require("core-js/modules/es.error.cause.js");
+require("core-js/modules/es.array.push.js");
+require("core-js/modules/es.iterator.constructor.js");
+require("core-js/modules/es.iterator.map.js");
 require("core-js/modules/web.dom-collections.iterator.js");
-var _react = _interopRequireWildcard(require("react"));
+var _react = require("react");
 var _utils = require("../utils");
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-/**
+var _jsxRuntime = require("react/jsx-runtime");
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } /* eslint-disable react/no-array-index-key */ /**
  * Render and animate from one word to another word and back again.
  *
  * @param {[{string}]} words The 2 words to animate between.
@@ -170,56 +173,60 @@ function TextSwap(_ref) {
       animateFunc();
     }, waitToStart);
   }, [lettersRefs1, lettersRefs2, loopAnimation, updateAnimation, randomReverseMax, randomReverseMin, randomStartMax, randomStartMin, waitToStart, transitionDuration, timingFunction, words]);
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-swap"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "word word-1 hidden"
-  }, [...words[0]].map((letter, i) => {
-    return /*#__PURE__*/_react.default.createElement("span", {
-      ref: lettersRefs1.current[i],
-      className: "letter",
-      key: "".concat(i).concat(letter)
-    }, letter);
-  })), /*#__PURE__*/_react.default.createElement("div", {
-    className: "word word-2 hidden"
-  }, [...words[1]].map((letter, i) => {
-    return /*#__PURE__*/_react.default.createElement("span", {
-      ref: lettersRefs2.current[i],
-      className: "letter",
-      key: "".concat(i).concat(letter)
-    }, letter);
-  })), /*#__PURE__*/_react.default.createElement("div", {
-    className: "word word-animation"
-  }, swapAnimations.map(renderedLetter => {
-    const {
-      id,
-      letter,
-      playing,
-      disappear,
-      src,
-      dest
-    } = renderedLetter;
-    let letterStyles = {
-      transition: "left ".concat(transitionDuration, "ms ").concat(timingFunction, ", top ").concat(transitionDuration, "ms ").concat(timingFunction)
-    };
-    if (playing) {
-      const left = "".concat(dest.rect.x, "px");
-      letterStyles = _objectSpread(_objectSpread({}, letterStyles), {}, {
-        left
-      });
-    } else {
-      const left = "".concat(src.rect.x, "px");
-      letterStyles = _objectSpread(_objectSpread({}, letterStyles), {}, {
-        left
-      });
-    }
-    if (disappear) {
-      letterStyles.opacity = 0;
-    }
-    return /*#__PURE__*/_react.default.createElement("span", {
-      key: id,
-      className: "letter",
-      style: letterStyles
-    }, letter);
-  })));
+  return /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+    className: "text-swap",
+    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      className: "word word-1 hidden",
+      children: [...words[0]].map((letter, i) => {
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+          ref: lettersRefs1.current[i],
+          className: "letter",
+          children: letter
+        }, "".concat(i).concat(letter));
+      })
+    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      className: "word word-2 hidden",
+      children: [...words[1]].map((letter, i) => {
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+          ref: lettersRefs2.current[i],
+          className: "letter",
+          children: letter
+        }, "".concat(i).concat(letter));
+      })
+    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      className: "word word-animation",
+      children: swapAnimations.map(renderedLetter => {
+        const {
+          id,
+          letter,
+          playing,
+          disappear,
+          src,
+          dest
+        } = renderedLetter;
+        let letterStyles = {
+          transition: "left ".concat(transitionDuration, "ms ").concat(timingFunction, ", top ").concat(transitionDuration, "ms ").concat(timingFunction)
+        };
+        if (playing) {
+          const left = "".concat(dest.rect.x, "px");
+          letterStyles = _objectSpread(_objectSpread({}, letterStyles), {}, {
+            left
+          });
+        } else {
+          const left = "".concat(src.rect.x, "px");
+          letterStyles = _objectSpread(_objectSpread({}, letterStyles), {}, {
+            left
+          });
+        }
+        if (disappear) {
+          letterStyles.opacity = 0;
+        }
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+          className: "letter",
+          style: letterStyles,
+          children: letter
+        }, id);
+      })
+    })]
+  });
 }

@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.randomMinMax = randomMinMax;
 exports.uuidv4 = uuidv4;
 require("core-js/modules/es.regexp.exec.js");
-require("core-js/modules/es.string.replace.js");
 require("core-js/modules/es.regexp.to-string.js");
+require("core-js/modules/es.string.replace.js");
 /**
  * Get a random number between `min` and `max`
  * @param {number} min The minimum number you want to include in the random output

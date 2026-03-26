@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = useFonts;
-require("core-js/modules/web.dom-collections.iterator.js");
 require("core-js/modules/es.promise.js");
+require("core-js/modules/web.dom-collections.iterator.js");
 var _react = require("react");
 function useFonts() {
   for (var _len = arguments.length, fontNames = new Array(_len), _key = 0; _key < _len; _key++) {

@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.DEFAULT_WORDS = exports.DEFAULT_ANIMATION_OPTIONS = void 0;
-const DEFAULT_WORDS = ['Text Swap Animation', 'Antitoxin Swamp Tea'];
+const DEFAULT_WORDS = exports.DEFAULT_WORDS = ['Text Swap Animation', 'Antitoxin Swamp Tea'];
 
 /**
  * @typedef AnimationOptions Timing options for when to start, how fast to animate forwards, backwards, and when to loop.
@@ -19,8 +19,7 @@ const DEFAULT_WORDS = ['Text Swap Animation', 'Antitoxin Swamp Tea'];
  */
 
 /** @type AnimationOptions */
-exports.DEFAULT_WORDS = DEFAULT_WORDS;
-const DEFAULT_ANIMATION_OPTIONS = {
+const DEFAULT_ANIMATION_OPTIONS = exports.DEFAULT_ANIMATION_OPTIONS = {
   randomStartMin: 0,
   randomStartMax: 3000,
   randomReverseMin: 6000,
@@ -30,4 +29,3 @@ const DEFAULT_ANIMATION_OPTIONS = {
   transitionDuration: 1000,
   timingFunction: 'ease-in-out'
 };
-exports.DEFAULT_ANIMATION_OPTIONS = DEFAULT_ANIMATION_OPTIONS;

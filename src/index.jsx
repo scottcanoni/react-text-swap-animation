@@ -1,10 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import TextSwap from './lib/components';
 import './App.css';
 
-ReactDOM.render(
-    <React.StrictMode>
+const root = createRoot(document.getElementById('root'));
+root.render(
+    <StrictMode>
         <div>
             <h1>React Text Swap Animation</h1>
             <h2>Demo</h2>
@@ -39,6 +40,5 @@ ReactDOM.render(
                 timingFunction: 'cubic-bezier(0.2,-2,0.8,2)'
             }} />
         </div>
-    </React.StrictMode>,
-    document.getElementById('root'),
+    </StrictMode>,
 );

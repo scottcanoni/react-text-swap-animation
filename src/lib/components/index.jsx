@@ -1,4 +1,3 @@
-import React from 'react';
 import useFonts from './useFonts';
 import TextSwap from './TextSwap';
 import { DEFAULT_ANIMATION_OPTIONS, DEFAULT_WORDS } from './constants';
