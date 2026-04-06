@@ -15,7 +15,7 @@ Demo
 
 [DEMO](https://xwdw2.csb.app/)
 
-[CodeSandbox](https://codesandbox.io/s/react-text-swap-animation-demo-xwdw2)
+[CodeSandbox](https://codesandbox.io/p/sandbox/react-text-swap-animation-demo-xwdw2)
 
 Usage
 ----
