@@ -7,6 +7,31 @@ body {
     font-weight: bold;
 }
 
-.text-swap .word {
-    white-space: pre;
+/*
+ * Everything below used to be shipped inside the package itself, which meant
+ * every consumer got white uppercase full-width text whether they wanted it or
+ * not. It is demo styling, so it lives in the demo now. This exact block is
+ * reproduced in the README for anyone migrating from v1.
+ */
+.text-swap {
+    color: #fff;
+    text-transform: uppercase;
+    text-align: left;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/*
+ * Regression guards for the v1 positioning bug. v1 fed a viewport-relative
+ * getBoundingClientRect().x into `left`, so an instance that was not flush
+ * against the left edge of the viewport rendered its letters offset by its own
+ * inset. Anything in here that lines up correctly proves the fix.
+ */
+.indented {
+    margin-left: 220px;
+}
+
+.narrow {
+    max-width: 380px;
 }
