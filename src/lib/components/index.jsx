@@ -2,27 +2,32 @@ import useFonts from './useFonts';
 import TextSwap from './TextSwap';
 import { DEFAULT_ANIMATION_OPTIONS, DEFAULT_WORDS } from './constants';
 
-import './index.css';
-
 /**
  * Render and animate from one word to another word and back again.
- * @param {[string]} [words] The 2 words to animate between.
+ * @param {[string, string]} [words] The 2 words or phrases to animate between.
  * @param {AnimationOptions} [animationOptions] Timing options for when to start, how fast to animate forwards, backwards, and when to loop.
- * @param {string} [fontToObserve] A description of an embedded font to observe and wait until loaded.
+ * @param {string} [fontToObserve] The name of an embedded font to wait for before measuring.
  * @returns {JSX.Element|null}
  */
-export default function Loader({ words = DEFAULT_WORDS, animationOptions = {}, fontToObserve }) {
+export default function Loader({ words = DEFAULT_WORDS, animationOptions = {}, fontToObserve, ...rest }) {
     const isFontLoaded = useFonts(fontToObserve);
-    const animOptions = {
-        ...DEFAULT_ANIMATION_OPTIONS,
-        ...animationOptions,
-    };
 
-    let word1 = words[0];
-    let word2 = words[1];
-    const maxLength = Math.max(word1.length, word2.length);
-    word1 = word1.padEnd(maxLength, ' ');
-    word2 = word2.padEnd(maxLength, ' ');
+    // Pad to equal length so every letter has a slot to pair with. A letter
+    // with no counterpart is therefore paired with a padding space, which is
+    // what makes "disappear" and "appear" fall out of the same mechanism.
+    const maxLength = Math.max(words[0].length, words[1].length);
 
-    return isFontLoaded ? <TextSwap words={[word1, word2]} animationOptions={animOptions} /> : null;
+    // Passed as two strings rather than an array: an array literal built here
+    // would be a new reference on every render, and the child depends on it.
+    return isFontLoaded ? (
+        <TextSwap
+            word1={words[0].padEnd(maxLength, ' ')}
+            word2={words[1].padEnd(maxLength, ' ')}
+            animationOptions={{
+                ...DEFAULT_ANIMATION_OPTIONS,
+                ...animationOptions,
+            }}
+            {...rest}
+        />
+    ) : null;
 }

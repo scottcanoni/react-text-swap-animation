@@ -4,7 +4,10 @@ import TextSwap from './lib/components';
 import './App.css';
 
 const root = createRoot(document.getElementById('root'));
+
 root.render(
+    // StrictMode double-invokes effects on purpose, so leaving it on here means
+    // the demo immediately exposes any regression of the timer cleanup.
     <StrictMode>
         <div>
             <h1>React Text Swap Animation</h1>
@@ -20,12 +23,19 @@ root.render(
             <br />
             <br />
 
-            <TextSwap fontToObserve="Open Sans" words={['don\'t be sad it\'s over', 'be happy that it happened']} />
+            {/* Wraps onto two lines, so it only animates correctly if `top` is set. */}
+            <TextSwap
+                className="narrow"
+                fontToObserve="Open Sans"
+                words={['don\'t be sad it\'s over', 'be happy that it happened']}
+            />
 
             <br />
             <br />
 
-            <TextSwap fontToObserve="Open Sans" words={['debit card', 'bad credit']} />
+            {/* Indented, so it only lines up if positions are container-relative. */}
+            <TextSwap className="indented" fontToObserve="Open Sans" words={['debit card', 'bad credit']} />
+
             <br />
             <br />
 
@@ -37,7 +47,7 @@ root.render(
                 loopAnimation: 20000,
                 waitToStart: 0,
                 transitionDuration: 4000,
-                timingFunction: 'cubic-bezier(0.2,-2,0.8,2)'
+                timingFunction: 'cubic-bezier(0.2,-2,0.8,2)',
             }} />
         </div>
     </StrictMode>,
